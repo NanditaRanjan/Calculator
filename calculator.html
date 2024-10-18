@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .input-display {
+            height: 60px;
+          width: 270px;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-800 flex items-center justify-center min-h-screen">
+    <div class="bg-gray-900 p-6 rounded-lg shadow-lg w-80">
+        <div class="text-center text-white mb-4 text-lg font-semibold">CALCULATOR</div>
+        <input type="text" id="display" class="input-display bg-white text-black p-2 rounded mb-4 text-right" disabled />
+        <div class="grid grid-cols-4 gap-2">
+            <button class="bg-gray-200 p-4 rounded-full text-lg" onclick="clearDisplay()">C</button>
+            <button class="bg-gray-200 p-4 rounded-full text-lg" onclick="deleteLast()">←</button>
+            <button class="bg-blue-700 p-4 rounded-full text-white text-lg" onclick="appendToDisplay('/')">/</button>
+            <button class="bg-blue-700 p-4 rounded-full text-white text-lg" onclick="appendToDisplay('*')">x</button>
+            <button class="bg-gray-200 p-4 rounded-full text-lg" onclick="appendToDisplay('7')">7</button>
+            <button class="bg-gray-200 p-4 rounded-full text-lg" onclick="appendToDisplay('8')">8</button>
+            <button class="bg-gray-200 p-4 rounded-full text-lg" onclick="appendToDisplay('9')">9</button>
+            <button class="bg-blue-700 p-4 rounded-full text-white text-lg" onclick="appendToDisplay('-')">-</button>
+            <button class="bg-gray-200 p-4 rounded-full text-lg" onclick="appendToDisplay('4')">4</button>
+            <button class="bg-gray-200 p-4 rounded-full text-lg" onclick="appendToDisplay('5')">5</button>
+            <button class="bg-gray-200 p-4 rounded-full text-lg" onclick="appendToDisplay('6')">6</button>
+            <button class="bg-blue-700 p-4 rounded-full text-white text-lg" onclick="appendToDisplay('+')">+</button>
+            <button class="bg-gray-200 p-4 rounded-full text-lg" onclick="appendToDisplay('1')">1</button>
+            <button class="bg-gray-200 p-4 rounded-full text-lg" onclick="appendToDisplay('2')">2</button>
+            <button class="bg-gray-200 p-4 rounded-full text-lg" onclick="appendToDisplay('3')">3</button>
+            <button class="bg-blue-700 p-4 rounded-full text-white text-lg" onclick="appendToDisplay('+')">+</button>
+            <button class="bg-gray-200 p-4 rounded-full text-lg" onclick="appendToDisplay('-')">+/-</button>
+            <button class="bg-gray-200 p-4 rounded-full text-lg" onclick="appendToDisplay('0')">0</button>
+            <button class="bg-gray-200 p-4 rounded-full text-lg" onclick="appendToDisplay('.')">.</button>
+            <button class="bg-orange-500 p-4 rounded-full text-white text-lg" onclick="calculateResult()">=</button>
+        </div>
+    </div>
+
+    <script>
+        function appendToDisplay(value) {
+            const display = document.getElementById('display');
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            const display = document.getElementById('display');
+            display.value = '';
+        }
+
+        function deleteLast() {
+            const display = document.getElementById('display');
+            display.value = display.value.slice(0, -1);
+        }
+
+        function calculateResult() {
+            const display = document.getElementById('display');
+            try {
+                display.value = eval(display.value.replace('x', '*'));
+            } catch (error) {
+                display.value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
